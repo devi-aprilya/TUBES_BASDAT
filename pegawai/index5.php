@@ -25,7 +25,7 @@ if (isset($_GET['op'])) {
 }
 
 if($op == 'delete'){
-    $id_pegawai     = $_GET['id_pegawai'];
+    $id_pegawai = $_GET['id_pegawai'];
     $sql1       = "delete from pegawai where id_pegawai = '$id_pegawai'";
     $q1         = mysqli_query($koneksi,$sql1);
     if($q1){
@@ -36,8 +36,8 @@ if($op == 'delete'){
 }
 
 if ($op == 'edit') {
-    $id_pasien      = $_GET['id_pegawai'];
-    $sql1           = "select * from pegawai where id_dokter = '$id_pegawai'";
+    $id_pegawai      = $_GET['id_pegawai'];
+    $sql1           = "select * from pegawai where id_pegawai = '$id_pegawai'";
     $q1             = mysqli_query($koneksi, $sql1);
     $r1             = mysqli_fetch_array($q1);
     $nip            = $r1['nip'];
@@ -107,7 +107,7 @@ if(isset($_POST['simpan'])){
         <!-- INPUT DATA -->
         <div class = "card">
             <div class = "card-header text-white bg-secondary">
-                DOKTER
+                PEGAWAI
             </div>
             <div class = "card-body">
                 <?php
@@ -199,8 +199,8 @@ if(isset($_POST['simpan'])){
                                     <td scope="row"><?php echo $alamat ?></td>
                                     <td scope="row"><?php echo $jabatan ?></td>
                                     <td scope="row">
-                                        <a href="index5.php?op=edit&id_pasien=<?php echo $id_dokter ?>"><button type="button" class="btn btn-warning">Edit</button></a>
-                                        <a href="index5.php?op=delete&id_pasien=<?php echo $id_dokter?>" onclick="return confirm('Hapus Data ?')"><button type="button" class="btn btn-danger">Delete</button></a>            
+                                        <a href="index5.php?op=edit&id_pasien=<?php echo $id_pegawai ?>"><button type="button" class="btn btn-warning">Edit</button></a>
+                                        <a href="index5.php?op=delete&id_pasien=<?php echo $id_pegawai?>" onclick="return confirm('Hapus Data ?')"><button type="button" class="btn btn-danger">Delete</button></a>            
                                     </td>
                                 </tr>
                                 <?php

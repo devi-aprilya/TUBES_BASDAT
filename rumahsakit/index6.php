@@ -11,7 +11,8 @@
       $simpan = mysqli_query($koneksi, "INSERT INTO obat (nama, alamat, call_center, rating)
                                         VALUES ('$_POST[tnama]',
                                                 '$_POST[talamat]',  
-                                                '$_POST[tca]' 
+                                                '$_POST[tcall_center]' 
+                                                '$_POST[trating]'
                                                                ) 
                                                      ");
     if($simpan)
@@ -35,13 +36,13 @@
     {
       if($_GET['hal'] == "edit")
       {
-        $tampil = mysqli_query($koneksi, "SELECT * FROM obat WHERE id_obat = '$_GET[id]' ");
+        $tampil = mysqli_query($koneksi, "SELECT * FROM rumahsakit WHERE id_rumah_sakit = '$_GET[id]' ");
         $data = mysqli_fetch_array($tampil);
         if($data)
         {
           $vnama = $data['nama'];
-          $vbentuk = $data['bentuk'];
-          $vjenis = $data['jenis'];
+          $valamat = $data['alamat'];
+          $vcall_center = $data['call_center'];
 
         }
       }
@@ -62,7 +63,7 @@
 <a href="../beranda/home.php" class="btn btn-info" role="button">Home</a>
 <div class="container">
 
-<h1>DATA OBAT</h1>
+<h1>RUMAH SAKIT</h1>
 
 <!-- AWAL CARD FORM-->
 <div class="card mt-5">
@@ -76,12 +77,12 @@
             <input type="text" name="tnama" class="form-control" placeholder=" " required>
         </div>
         <div class="form-group">
-            <label>bentuk</label>
-            <input type="text" name="tbentuk" class="form-control" placeholder=" " required>
+            <label>alamat</label>
+            <input type="text" name="talamat" class="form-control" placeholder=" " required>
         </div>
         <div class="form-group">
-            <label>jenis</label>
-            <input type="text" name="tjenis" class="form-control" placeholder=" " required>
+            <label>call center</label>
+            <input type="text" name="tcall_center" class="form-control" placeholder=" " required>
         </div>
 
         <button type="submit" class="btn btn-success" name="bsimpan">Simpan</button>
@@ -95,7 +96,7 @@
 
 <div class="card mt-5">
   <div class="card-header bg-success text-white">
-    Daftar Pasien
+      ..
   </div>
   <div class="card-body">
 
@@ -103,21 +104,21 @@
     <tr>
       <th>No</th>
       <th>Nama</th>
-      <th>Bentuk</th>
-      <th>Jenis</th>
+      <th>alamat</th>
+      <th>call_center</th>
     </tr>
     <?php
         $no = 1;
-        $tampil = mysqli_query($koneksi, "SELECT * from obat order by id_obat desc");
+        $tampil = mysqli_query($koneksi, "SELECT * from rumah_sakit order by id_rumah_sakit desc");
         while($data = mysqli_fetch_array($tampil)) :
   ?>
   <tr>
   <td><?=$no++?></td>
   <td><?=$data['nama']?></td>
-  <td><?=$data['bentuk']?></td>
-  <td><?=$data['jenis']?></td>
+  <td><?=$data['alamat']?></td>
+  <td><?=$data['call_center']?></td>
   <td>
-    <a href="index3.php?hal=edit&id=<?=$data['id_obat']?>" class="btn btn-warning"> Edit </a>
+    <a href="index6.php?hal=edit&id=<?=$data['id_rumah_sakit']?>" class="btn btn-warning"> Edit </a>
     <a href="#" class="btn btn-danger"> Hapus </a>
 
   
